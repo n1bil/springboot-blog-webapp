@@ -1,7 +1,6 @@
 package com.example.springbootblogwebapp.controller;
 
 import com.example.springbootblogwebapp.dto.PostDto;
-import com.example.springbootblogwebapp.entity.Post;
 import com.example.springbootblogwebapp.service.PostService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -90,6 +89,16 @@ public class PostController {
         postService.deletePost(postId);
 
         return "redirect:/admin/posts";
+    }
+
+    // handler method to handle view post request
+    @GetMapping("/admin/posts/{postUrl}/view")
+    public String viewPost(@PathVariable("postUrl") String postUrl,
+                           Model model) {
+        PostDto postDto = postService.findPostByUrl(postUrl);
+        model.addAttribute("post", postDto);
+
+        return "admin/view_post";
     }
 
     public static String getUrl(String postTitle) {
