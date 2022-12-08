@@ -3,6 +3,8 @@ package com.example.springbootblogwebapp.mapper;
 import com.example.springbootblogwebapp.dto.PostDto;
 import com.example.springbootblogwebapp.entity.Post;
 
+import java.util.stream.Collectors;
+
 public class PostMapper {
 
     // map Post entity to PostDto
@@ -15,6 +17,9 @@ public class PostMapper {
                 .shortDescription(post.getShortDescription())
                 .createdOn(post.getCreatedOn())
                 .updatedOn(post.getUpdateOn())
+                .comments(post.getComments().stream()
+                        .map(CommentMapper::mapToCommentDto)
+                        .collect(Collectors.toSet()))
                 .build();
     }
 

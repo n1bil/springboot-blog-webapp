@@ -1,5 +1,6 @@
 package com.example.springbootblogwebapp.controller;
 
+import com.example.springbootblogwebapp.dto.CommentDto;
 import com.example.springbootblogwebapp.dto.PostDto;
 import com.example.springbootblogwebapp.service.PostService;
 import org.springframework.stereotype.Controller;
@@ -33,7 +34,10 @@ public class BlogController {
     private String showPost(@PathVariable("postUrl") String postUrl,
                             Model model) {
         PostDto post = postService.findPostByUrl(postUrl);
+
+        CommentDto commentDto = new CommentDto();
         model.addAttribute("post", post);
+        model.addAttribute("comment", commentDto);
 
         return "blog/blog_post";
     }
