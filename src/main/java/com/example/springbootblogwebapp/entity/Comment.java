@@ -3,6 +3,7 @@ package com.example.springbootblogwebapp.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -26,9 +27,8 @@ public class Comment {
     private String content;
     @CreationTimestamp
     private LocalDateTime createdOn;
-    @CreationTimestamp
+    @UpdateTimestamp
     private LocalDateTime updateOn;
-
     @ManyToOne
     @JoinColumn(name = "post_id", nullable = false)
     private Post post;

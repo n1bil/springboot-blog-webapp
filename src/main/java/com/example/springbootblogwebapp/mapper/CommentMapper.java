@@ -5,7 +5,7 @@ import com.example.springbootblogwebapp.entity.Comment;
 
 public class CommentMapper {
     // convert comment entity to comment dto
-    public static CommentDto mapToCommentDto(Comment comment){
+    public static CommentDto mapToCommentDto(Comment comment) {
         return CommentDto.builder()
                 .id(comment.getId())
                 .name(comment.getName())
@@ -16,7 +16,7 @@ public class CommentMapper {
                 .build();
     }
 
-    // convert comment entity to comment
+    // convert comment dto to comment entity
     public static Comment mapToComment(CommentDto commentDto) {
         return Comment.builder()
                 .id(commentDto.getId())

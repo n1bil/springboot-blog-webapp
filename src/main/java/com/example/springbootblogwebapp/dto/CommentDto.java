@@ -6,14 +6,14 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class CommentDto {
     private Long id;
-    @NotEmpty(message = "Must be not empty")
+    @NotEmpty(message = "Must not be empty")
     private String name;
     @NotEmpty(message = "Email should not be empty or null")
     @Email

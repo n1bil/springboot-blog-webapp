@@ -29,14 +29,13 @@ public class CommentController {
                                 @Valid @ModelAttribute("comment") CommentDto commentDto,
                                 BindingResult result,
                                 Model model) {
-
         PostDto postDto = postService.findPostByUrl(postUrl);
         if(result.hasErrors()) {
             model.addAttribute("post", postDto);
             model.addAttribute("comment", commentDto);
+
             return "blog/blog_post";
         }
-
         commentService.createComment(postUrl, commentDto);
 
         return "redirect:/post/" + postUrl;

@@ -1,6 +1,8 @@
 package com.example.springbootblogwebapp.mapper;
 
+import com.example.springbootblogwebapp.dto.CommentDto;
 import com.example.springbootblogwebapp.dto.PostDto;
+import com.example.springbootblogwebapp.entity.Comment;
 import com.example.springbootblogwebapp.entity.Post;
 
 import java.util.stream.Collectors;

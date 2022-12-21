@@ -30,20 +30,21 @@ public class WebSpringSecurity {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/resources/**").permitAll()
-                .antMatchers("/register/**").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN", "GUEST")
-                .and()
-                .formLogin(form -> form
+                .authorizeHttpRequests((authorize) ->
+                        authorize.requestMatchers(new AntPathRequestMatcher("/resource/**")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/register/**")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasAnyRole("ADMIN", "GUEST")
+                                .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/post/**")).permitAll()
+                                .anyRequest().permitAll()
+                )
+                .formLogin( form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/admin/posts")
                         .loginProcessingUrl("/login")
                         .permitAll()
-                ).logout(
-                        logout -> logout
-                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                                .permitAll()
+                ).logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .permitAll()
                 );
         return http.build();
     }

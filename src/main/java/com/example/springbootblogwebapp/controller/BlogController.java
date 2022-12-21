@@ -36,8 +36,8 @@ public class BlogController {
         PostDto post = postService.findPostByUrl(postUrl);
 
         CommentDto commentDto = new CommentDto();
-        model.addAttribute("post", post);
         model.addAttribute("comment", commentDto);
+        model.addAttribute("post", post);
 
         return "blog/blog_post";
     }

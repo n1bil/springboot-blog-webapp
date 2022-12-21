@@ -1,5 +1,6 @@
 package com.example.springbootblogwebapp.security;
 
+
 import com.example.springbootblogwebapp.entity.User;
 import com.example.springbootblogwebapp.repository.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
