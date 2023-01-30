@@ -32,13 +32,12 @@ public class  BlogController {
     // handler method to handle view post request
     @GetMapping("/post/{postUrl}")
     private String showPost(@PathVariable("postUrl") String postUrl,
-                            Model model) {
+                            Model model){
         PostDto post = postService.findPostByUrl(postUrl);
 
         CommentDto commentDto = new CommentDto();
-        model.addAttribute("comment", commentDto);
         model.addAttribute("post", post);
-
+        model.addAttribute("comment", commentDto);
         return "blog/blog_post";
     }
 

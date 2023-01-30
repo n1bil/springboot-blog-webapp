@@ -31,7 +31,7 @@ public class WebSpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers(new AntPathRequestMatcher("/resource/**")).permitAll()
+                        authorize.requestMatchers(new AntPathRequestMatcher("/resources/**")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/register/**")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasAnyRole("ADMIN", "GUEST")
                                 .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
