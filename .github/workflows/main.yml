@@ -44,7 +44,7 @@ jobs:
       run: |
         cd target/
         pwd
-        mv springboot-blog-webapp-0.0.1-SNAPSHOT.jar SNAPSHOT.jar
+        chmod 777 springboot-blog-webapp-0.0.1-SNAPSHOT.jar
         ls -la
     
     - name: Copy jar to VM
