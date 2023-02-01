@@ -1,0 +1,30 @@
+name: AutomationForBlogApp
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  buildJar:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Print message
+      run: echo "This job is for build jar"
+      
+  deliverToS3:
+    runs-on: ubuntu-latest
+    needs: [buildJar]
+    
+    steps:
+    - name: Print message
+      run: echo "This job is for copy jar to aws s3"
+      
+  updateApp:
+    runs-on: ubuntu-latest
+    needs: [deliverToS3]
+    
+    steps:
+    - name: Print message
+      run: echo "This job is for rebuild docker container"
