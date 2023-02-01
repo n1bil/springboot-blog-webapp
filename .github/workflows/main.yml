@@ -44,13 +44,14 @@ jobs:
       run: |
         cd target/
         pwd
+        mv springboot-blog-webapp-0.0.1-SNAPSHOT.jar SNAPSHOT.jar
         ls -la
     
     - name: Copy jar to VM
       run: |
         scp -i ${{secrets.PEM_KEY}} \
         /home/runner/work/springboot-blog-webapp/springboot-blog-webapp/target/springboot-blog-webapp-0.0.1-SNAPSHOT.jar \
-        ec2-user@52.86.63.120:~/springboot-blog-webapp-0.0.1-SNAPSHOT.jar
+        ec2-user@52.86.63.120:~/
       
   deliverToS3:
     runs-on: ubuntu-latest
