@@ -41,6 +41,11 @@ jobs:
         mvn clean package
         cd target/
         ls -la
+    
+    - name: Check directory
+      run: |
+        cd target/
+        ls -la
       
   deliverToS3:
     runs-on: ubuntu-latest
