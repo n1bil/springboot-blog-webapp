@@ -39,6 +39,11 @@ jobs:
     - name: Build jar
       run: |
         mvn clean package
+        
+    - name: CHeck directory
+      run: |
+        cd targets/
+        pwd
     
     - name: Copy jar to VM
       run: |
