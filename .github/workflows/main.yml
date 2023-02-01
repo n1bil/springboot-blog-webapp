@@ -1,4 +1,7 @@
 name: AutomationForBlogApp
+env:
+  APP_NAME: "blogapp"
+  DEPLOY_PACKAGE_NAME: "jar-app-ver${{github.sha}}" 
 
 on:
   push:
@@ -12,6 +15,15 @@ jobs:
     steps:
     - name: Print message
       run: echo "This job is for build jar"
+    
+    - name: Git clone
+      uses: actions/checkout@v1
+    
+    - name: List files
+      run: ls -la
+      
+    - name: Check java
+      run: java -version
       
   deliverToS3:
     runs-on: ubuntu-latest
