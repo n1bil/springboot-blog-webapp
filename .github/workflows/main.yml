@@ -1,7 +1,8 @@
 name: AutomationForBlogApp
 env:
   APP_NAME: "blogapp"
-  DEPLOY_PACKAGE_NAME: "jar-app-ver${{github.sha}}" 
+  DEPLOY_PACKAGE_NAME: "jar-app-ver${{github.sha}}"
+  AWS_REGION_NAME: "us-east-1"
 
 on:
   push:
@@ -17,7 +18,7 @@ jobs:
       run: echo "This job is for build jar"
     
     - name: Git clone
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
     
     - name: List files
       run: ls -la
