@@ -21,9 +21,6 @@ jobs:
     - name: Git clone
       uses: actions/checkout@v2
     
-    - name: List files
-      run: ls -la
-    
     - name: Configure AWS credential
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -31,12 +28,12 @@ jobs:
         aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
         aws-region: ${{env.AWS_REGION_NAME}}
         
-    - name: Access test
+    - name: Build jar
       run: |
-        aws s3api create-bucket \
-                  --bucket ${{env.APP_NAME}}-${{env.ACCOUNT_ID}} \
-                  --region ${{env.AWS_REGION_NAME}}
+        mvn clean package
     
+    - name: List files
+      run: ls -la
       
   deliverToS3:
     runs-on: ubuntu-latest
