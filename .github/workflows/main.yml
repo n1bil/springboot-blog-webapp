@@ -36,8 +36,11 @@ jobs:
         sudo update-alternatives --set java $JAVA_HOME/bin/java
         java -version
     
-    - name: List files
-      run: ls -la
+    - name: Build jar
+      run: |
+        mvn clean package
+        cd target/
+        ls -la
       
   deliverToS3:
     runs-on: ubuntu-latest
