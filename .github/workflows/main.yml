@@ -22,9 +22,20 @@ jobs:
     
     - name: List files
       run: ls -la
-      
-    - name: Check java
-      run: java -version
+    
+    - name: Configure AWS credential
+      uses: aws-actions/configure-aws-credential@v1
+      with:
+        aws-access-key-id: ${{secrets.AWS_ACCESS_KEY}} 
+        aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
+        aws-region: ${{env.AWS_REGION_NAME}}
+        
+    - name: Access test
+      run: |
+        aws s3api create-bucket \
+                  --bucket jar \
+                  --region ${{env.AWS_REGION_NAME}}
+    
       
   deliverToS3:
     runs-on: ubuntu-latest
