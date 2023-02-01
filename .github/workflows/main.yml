@@ -42,7 +42,7 @@ jobs:
         
     - name: CHeck directory
       run: |
-        cd targets/
+        cd target/
         pwd
     
     - name: Copy jar to VM
