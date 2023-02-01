@@ -4,6 +4,7 @@ env:
   DEPLOY_PACKAGE_NAME: "jar-app-ver${{github.sha}}"
   AWS_REGION_NAME: "us-east-1"
   ACCOUNT_ID: "736639143360"
+  JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
 
 on:
   push:
@@ -27,6 +28,12 @@ jobs:
         aws-access-key-id: ${{secrets.AWS_ACCESS_KEY}} 
         aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
         aws-region: ${{env.AWS_REGION_NAME}}
+    
+    - name: Set up Java 17
+      run: |
+        sudo apt-get install openjdk-17-jdk
+        sudo update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 1
+        sudo update-alternatives --set java $JAVA_HOME/bin/java
         
     - name: Build jar
       run: mvn clean package
