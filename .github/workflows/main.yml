@@ -42,7 +42,7 @@ jobs:
     
     - name: Check directory
       run: |
-        scp /target/*.jar ec2-user@52.86.63.120:~/
+        scp /target/*.jar github-actions@52.86.63.120:~/
       
   deliverToS3:
     runs-on: ubuntu-latest
