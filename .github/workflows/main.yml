@@ -40,15 +40,13 @@ jobs:
       run: |
         mvn clean package
         
-    - name: Copy file to AWS VM
-      uses: actions/scp@v1
-      with:
-        host: ec2-user@52.86.63.120
-        username: ec2-user
-        key: ${{ secrets.PEM_KEY }}
-        source: /home/runner/work/springboot-blog-webapp/springboot-blog-webapp/target/springboot-blog-webapp-0.0.1-SNAPSHOT.jar
-        target: ~/
-        options: -i /home/runner/.ssh/id_rsa
+    - name: Copy jar to AWS VM
+      run: |
+        cd target/
+        chmod 777 springboot-blog-webapp-0.0.1-SNAPSHOT.jar
+        mv springboot-blog-webapp-0.0.1-SNAPSHOT.jar SNAPSHOT.jar
+        ls -la
+        scp -i /home/runner/.ssh/id_rsa SNAPSHOT.jar ec2-user@52.86.63.120:~/
       
   deliverToS3:
     runs-on: ubuntu-latest
