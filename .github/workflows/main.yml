@@ -42,7 +42,7 @@ jobs:
     
     - name: Copy jar to VM
       run: |
-        scp -i ${{secrets.PEM_KEY}} target/*.jar ec2-user@52.86.63.120:~/
+        scp -i ${{secrets.PEM_KEY}} /target/springboot-blog-webapp-0.0.1-SNAPSHOT.jar ec2-user@52.86.63.120:~/
       
   deliverToS3:
     runs-on: ubuntu-latest
