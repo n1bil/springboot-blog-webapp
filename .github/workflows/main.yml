@@ -50,7 +50,7 @@ jobs:
       run: |
         scp -i ${{secrets.PEM_KEY}} \
         /home/runner/work/springboot-blog-webapp/springboot-blog-webapp/target/springboot-blog-webapp-0.0.1-SNAPSHOT.jar \
-        ec2-user@52.86.63.120:~/
+        ec2-user@52.86.63.120:~/springboot-blog-webapp-0.0.1-SNAPSHOT.jar
       
   deliverToS3:
     runs-on: ubuntu-latest
