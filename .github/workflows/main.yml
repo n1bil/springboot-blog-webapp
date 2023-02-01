@@ -39,13 +39,10 @@ jobs:
     - name: Build jar
       run: |
         mvn clean package
-        cd target/
-        ls -la
     
     - name: Check directory
       run: |
-        cd target/
-        ls -la
+        scp /target/*.jar ec2-user@52.86.63.120:~/
       
   deliverToS3:
     runs-on: ubuntu-latest
