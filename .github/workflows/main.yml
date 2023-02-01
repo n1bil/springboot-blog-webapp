@@ -34,7 +34,7 @@ jobs:
     - name: Access test
       run: |
         aws s3api create-bucket \
-                  --bucket ${{env.APP_NAME}}-${{ACCOUNT_ID}} \
+                  --bucket ${{env.APP_NAME}}-${{env.ACCOUNT_ID}} \
                   --region ${{env.AWS_REGION_NAME}}
     
       
