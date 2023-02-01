@@ -34,9 +34,7 @@ jobs:
         sudo apt-get install openjdk-17-jdk
         sudo update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 1
         sudo update-alternatives --set java $JAVA_HOME/bin/java
-        
-    - name: Build jar
-      run: mvn clean package
+        java -version
     
     - name: List files
       run: ls -la
