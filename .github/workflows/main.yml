@@ -3,6 +3,7 @@ env:
   APP_NAME: "blogapp"
   DEPLOY_PACKAGE_NAME: "jar-app-ver${{github.sha}}"
   AWS_REGION_NAME: "us-east-1"
+  ACCOUNT_ID: "736639143360"
 
 on:
   push:
@@ -33,7 +34,7 @@ jobs:
     - name: Access test
       run: |
         aws s3api create-bucket \
-                  --bucket ${{env.APP_NAME}} \
+                  --bucket ${{env.APP_NAME}}-${{ACCOUNT_ID}} \
                   --region ${{env.AWS_REGION_NAME}}
     
       
