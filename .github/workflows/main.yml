@@ -43,11 +43,6 @@ jobs:
     - name: Copy jar to AWS VM
       run: |
         aws s3 cp s3://blogapp-${{env.ACCOUNT_ID}}/blogappkey.pem /home/runner/.ssh/blogappkey.pem
-        cd /home/runner/.ssh/
-        ls -la
-        cd target/
-        chmod 777 springboot-blog-webapp-0.0.1-SNAPSHOT.jar
-        mv springboot-blog-webapp-0.0.1-SNAPSHOT.jar SNAPSHOT.jar
         ls -la
         scp -i /home/runner/.ssh/blogappkey.pem SNAPSHOT.jar ec2-user@52.86.63.120:~/
       
