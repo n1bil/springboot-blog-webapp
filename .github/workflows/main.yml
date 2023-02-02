@@ -30,6 +30,7 @@ jobs:
         aws-region: ${{env.AWS_REGION_NAME}}
         run: |
           aws s3 cp s3://blogapp-${{env.ACCOUNT_ID}}/blogappkey.pem /home/runner/.ssh/blogappkey.pem
+          cd /home/runner/.ssh/
           ls -la
     
     - name: Set up Java 17
