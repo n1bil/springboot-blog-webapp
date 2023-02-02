@@ -28,10 +28,6 @@ jobs:
         aws-access-key-id: ${{secrets.AWS_ACCESS_KEY}} 
         aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
         aws-region: ${{env.AWS_REGION_NAME}}
-        run: |
-          aws s3 cp s3://blogapp-${{env.ACCOUNT_ID}}/blogappkey.pem /home/runner/.ssh/blogappkey.pem
-          cd /home/runner/.ssh/
-          ls -la
     
     - name: Set up Java 17
       run: |
@@ -46,11 +42,14 @@ jobs:
     
     - name: Copy jar to AWS VM
       run: |
+        aws s3 cp s3://blogapp-${{env.ACCOUNT_ID}}/blogappkey.pem /home/runner/.ssh/blogappkey.pem
+        cd /home/runner/.ssh/
+        ls -la
         cd target/
         chmod 777 springboot-blog-webapp-0.0.1-SNAPSHOT.jar
         mv springboot-blog-webapp-0.0.1-SNAPSHOT.jar SNAPSHOT.jar
         ls -la
-        scp -i ${{secrets.PEM_KEY}} SNAPSHOT.jar ec2-user@52.86.63.120:~/
+        scp -i /home/runner/.ssh/blogappkey.pem SNAPSHOT.jar ec2-user@52.86.63.120:~/
       
   deliverToS3:
     runs-on: ubuntu-latest
