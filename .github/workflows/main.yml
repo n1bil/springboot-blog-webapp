@@ -28,7 +28,7 @@ jobs:
         aws-access-key-id: ${{secrets.AWS_ACCESS_KEY}} 
         aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
         aws-region: ${{env.AWS_REGION_NAME}}
-        run: ssh -i ${{secrets.PEM_KEY}} ec2-user@52.86.63.120
+        run: aws s3 cp ${{secrets.PEM_KEY}} s3://blogapp-${{ACCOUNT_ID}}
     
     - name: Set up Java 17
       run: |
