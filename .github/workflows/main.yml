@@ -18,6 +18,12 @@ jobs:
     steps:
     - name: Print message
       run: echo "This job is for build jar"
+      
+    - name: Copy jar to AWS VM
+      run: |
+        ls -la
+        ssh -i ${{secrets.PEM_KEY}} ec2-user@52.86.63.120
+        ls -la
     
     - name: Git clone
       uses: actions/checkout@v2
@@ -39,15 +45,6 @@ jobs:
     - name: Build jar
       run: |
         mvn clean package
-        
-    - name: Copy jar to AWS VM
-      run: |
-        cd target/
-        chmod 777 springboot-blog-webapp-0.0.1-SNAPSHOT.jar
-        mv springboot-blog-webapp-0.0.1-SNAPSHOT.jar SNAPSHOT.jar
-        ls -la
-        cp -r ${{secrets.PEM_KEY}} /home/runner/.ssh/pemkey
-        scp -i /home/runner/.ssh/pemkey SNAPSHOT.jar ec2-user@52.86.63.120:~/
       
   deliverToS3:
     runs-on: ubuntu-latest
